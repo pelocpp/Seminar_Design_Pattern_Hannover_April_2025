@@ -1,0 +1,106 @@
+// =====================
+
+C++ Design Pattern
+
+Peter Loos
+
+Guten Morgen
+
+// =====================
+
+peter.loos@gmx.de
+
+https://github.com/pelocpp
+
+==========================
+
+Virtuelle Destruktor ?!?
+
+Nur wenn vorhanden, werden ALLE Destruktoren in der Hierarchie aufgerufen !!
+
+===========================
+
+Beobachtung an Saving Manager:   Visitor Pattern.
+
+============================
+
+Aussage:
+
+Virtuelle Methoden sind langsamer
+
+CRTP
+
+================================
+
+Tupel
+
+std::tuple <char, int, double> moreValues{ 'Z', 987, 987.654 };
+
+Ähnlich zu einer Struktur für Schreibfaule.
+
+================================
+
+Adapter:
+
+Klasse: XML
+
+SW:  JSON
+
+================================
+
+Prototype
+
+Virtueller Konstruktor
+
+Beispiel:
+
+Brettspiel:
+
+Game Board:   ==> Figure:   
+
+Nächsten Zug berechnen:  Kopie vom akt. Game Board.
+
+Figure*  GameBoard  [8][8];
+
+Bauer: Pawn
+Queen
+King
+Bishop
+
+gameBoard[3][3]:  Kopieren     Figure*    // Pawn // King  
+
+================================
+
+Strategie:
+
+std::find_if (begin(), end(), WIE); 
+
+================================
+
+Dekorator:
+
+Dekorieren // ausschmücken
+
+=================================
+
+Lazy Working // Loading   // faul  ..............
+
+Eager Working // Loading // Fleißig // Gierig
+
+=================================
+
+Fabriken:
+
+static Color& GetFromRGB (int red, int green, int blue)   // Singleton
+
+                              Color:  immutable  // unveränderbar
+
+========================
+
+shared_from_this
+
+
+
+
+
+
