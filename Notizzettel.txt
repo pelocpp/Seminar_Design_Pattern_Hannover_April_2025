@@ -100,7 +100,140 @@ static Color& GetFromRGB (int red, int green, int blue)   // Singleton
 shared_from_this
 
 
+============================
+
+Wann std::shared_ptr
+
+Wann std::weak:ptr
+
+a) Fange mal mit Shared_ptr an.
+
+b1) Möchte Zugang zu Objekt des Shared_ptr haben:
+
+    i) Will ich Besitzer dabei werden ???
+
+    i) Will ich kein Besitzer dabei werden ???
 
 
+// ================================
 
+shared_from_this
+
+Beispiel:
+
+Observer // Subject:
+
+Observer::Methode()
+{
+    this
+
+    std::shared_ptr me (this);
+}
+
+==============================================
+
+Resources:
+
+Socket,  SqlConnection,  Handle (Win32):
+
+open         - close
+
+attach      - detach
+
+CreateMutex -- ReleaseHandle
+
+new         - delete   (Standard Mimik: Smart Pointer)
+
+Idee: Alle Resources werden in einem Hüllenobjekt untergebracht
+
+Destruktor.
+
+
+==============================================
+
+
+CRTP:
+
+Virtuelle Methoden:    Indirekter Methodenaufruf
+
+Embedded Programmierung.
+
+Ansatz: Statischer Polymorphimus.
+
+CRTP:  Curious
+
+Kochrezept.
+
+===========================================
+
+class Unknown
+
+==>
+
+int* ptr;
+
+ptr = new int;
+
+ptr = new int[100];
+
+=====================
+
+delete ptr;
+
+oder
+
+delete[] ptr;
+
+=====================
+
+
+STL Container
+
+   std::vector<int>   Homogenen Containern
+
+=============================
+
+
+Builder:
+
+Named Parameters Constructor
+
+Fluent Programming Style
+
+
+============================================
+
+Iterieren:
+
+Von einem Nicht-SLT-Container Objekt:
+
+a) a la C++ Stil
+
+b) anders (a la Java / C# zum Beispiel)
+
+MoveNext
+HasNext
+GetCurrent
+
+===============================================
+
+Group g;
+
+for ( auto elem : group) {
+
+    std::println("{}", elem);
+}
+
+Can you give me an implementation for a C++
+iterator as nested class?
+
+The first thing to do is to assign the iterator some properties. Until C++17 this is done by tagging it with the tag dispatch mechanism, while C++20 uses concepts: in this article I will follow the traditional approach.
+
+C++ expects some properties from an iterator:
+
+iterator_category — one of the six iterator categories we have seen above. The full list is available here. The std::forward_iterator_tag tag is what we need;
+difference_type — a signed integer type that can be used to identify distance between iterator steps. Our iterator is basically a wrapper around a pointer and leverages pointer arithmetic, so the default std::ptrdiff_t is a good choice;
+value_type — the type the iterator iterates over. int in our case;
+pointer — defines a pointer to the type iterated over. int* in our case;
+reference — defines a reference to the type iterated over. int& in our case;
 

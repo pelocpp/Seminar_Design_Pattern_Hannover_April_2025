@@ -39,6 +39,7 @@ namespace ObserverDesignPatternSmartPointer {
     class Subject : public ISubject {
     private:
         std::list<std::weak_ptr<IObserver>> m_observers;
+
         std::string                         m_message;
 
     public:
@@ -87,12 +88,16 @@ namespace ObserverDesignPatternSmartPointer {
     private:
         void notify() {
             howManyObservers();
+
             for (std::weak_ptr<IObserver>& weakPtr : m_observers) {
+
                 std::shared_ptr<IObserver> sharedPtr{ weakPtr.lock() };
+
                 if (sharedPtr != nullptr) {
                     sharedPtr->update(m_message);
                 }
             }
+
         }
     };
 

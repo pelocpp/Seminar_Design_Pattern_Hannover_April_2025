@@ -360,6 +360,19 @@ namespace MotivationVisitor_05_Modern_Cpp
         doc = md;
         std::visit(dp, doc);
     }
+
+    /* ------ std::variant & std::visit -------- */
+
+
+    class Document
+    {
+        virtual void foo () = 0;
+    };
+    static void clientCode066() {
+        HTML hd;
+        hd.addToList("This is line");
+        std::variant<Document*, HTML*> doc2 = &hd;
+    }
 }
 
 // ===========================================================================
@@ -408,9 +421,12 @@ namespace MotivationVisitor_06_Much_More_Modern_Cpp
 
         auto genericVisitor = [](const auto& doc) {
 
+            auto dummy = 123;
+
             using DocumentType = decltype (doc);
 
-            using DocumentTypeWithoutRef = std::remove_reference<DocumentType>::type;
+            using DocumentTypeWithoutRef = 
+                std::remove_reference<DocumentType>::type;
 
             using DocumentTypeWithoutRefAndConst
                 = std::remove_const<DocumentTypeWithoutRef>::type;

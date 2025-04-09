@@ -94,6 +94,7 @@ namespace ObserverDesignPatternSmartPointerEx {
 
     // ===========================================================================
 
+    // Kurios - Curious - CRTP 
     class Observer : public IObserver, public std::enable_shared_from_this<Observer> {
     private:
         std::shared_ptr<Subject> m_subject;
@@ -104,6 +105,9 @@ namespace ObserverDesignPatternSmartPointerEx {
     public:
         Observer() : m_subject{ nullptr }
         {
+         //   std::shared_ptr<Observer> me{ shared_from_this() };
+
+
             std::cout << "Hi, I'm the Observer \"" << ++Observer::m_static_number << "\".\n";
             m_number = Observer::m_static_number;
         }
@@ -112,6 +116,11 @@ namespace ObserverDesignPatternSmartPointerEx {
         {
             std::cout << "Hi, I'm the Observer \"" << ++Observer::m_static_number << "\".\n";
             m_number = Observer::m_static_number;
+        }
+
+        void foo()
+        {
+            std::shared_ptr<Observer> me{ shared_from_this() };
         }
 
         virtual ~Observer()
@@ -129,8 +138,12 @@ namespace ObserverDesignPatternSmartPointerEx {
         {
             if (m_subject != nullptr) {
                 try {
+                   // std::shared_ptr<Observer> me2(this);
+
                     std::shared_ptr<Observer> me{ shared_from_this() };
+
                     m_subject->detach(me);
+
                     std::cout
                         << "Observer \"" << m_number
                         << "\" removed from the list.\n";
@@ -152,6 +165,9 @@ namespace ObserverDesignPatternSmartPointerEx {
     int Observer::m_static_number = 0;
 
     static void clientCode_01() {
+
+        Observer obs;
+        obs.foo();
 
         std::shared_ptr<Subject> subject{ std::make_shared<Subject>() };
 

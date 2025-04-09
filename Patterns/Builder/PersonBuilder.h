@@ -21,6 +21,7 @@ public:
 
     operator Person&& (); // type conversion operator
 
+    //  ostream&  operator<<
     PersonBuilder& lives         (const std::string& country);
     PersonBuilder& at            (const std::string& street_address);
     PersonBuilder& with_postcode (const std::string& postal_code);
